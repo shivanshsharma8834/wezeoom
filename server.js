@@ -14,7 +14,19 @@ app.get('/', (req, res) => {
 
 app.get('/:room', (req, res) => {
     res.render('room', {
-        roomId: req.params.room
+        roomID: req.params.room
+    })
+})
+
+io.on('connection', socket => {
+    socket.on('join-room', (roomID, userID) => {
+        console.log(roomID, userID)
+        socket.join(roomID)
+        socket.to(roomID).emit('user-connected', userID)
+    })
+
+    socket.on('disconnect', (roomID, userID) => {
+        socket.to(roomID).emit('user-disconnected', userID)
     })
 })
 

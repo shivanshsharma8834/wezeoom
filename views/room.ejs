@@ -17,6 +17,12 @@
             object-fit: cover;
         }
     </style>
+    <script>
+        const ROOM_ID = "<%= roomID %>"
+    </script>
+    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div id="video-grid">
